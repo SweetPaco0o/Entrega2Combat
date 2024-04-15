@@ -14,6 +14,9 @@ public class InputController : MonoBehaviour
     private bool _run;
     public bool Run { get { return _run; } }
 
+    private bool _shoot;
+    public bool Shoot { get { return _shoot; } }
+
     private bool _zoom;
     public bool Zoom { get { return _zoom; } }
     
@@ -21,6 +24,7 @@ public class InputController : MonoBehaviour
     {
         _jumped = false;
         _zoom = false;
+        _shoot = false;
     }
 
     private void OnMove(InputValue input)
@@ -31,6 +35,11 @@ public class InputController : MonoBehaviour
     private void OnJump()
     {
         _jumped = true;
+    }
+    private void OnShoot()
+    {
+        Debug.Log("Dispara");
+        _shoot = true;
     }
     private void OnRunStart()
     {
