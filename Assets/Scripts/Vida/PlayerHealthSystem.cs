@@ -11,6 +11,8 @@ public class PlayerHealthSystem : MonoBehaviour
     public Color damageColor;
     public float damageFlashTime = 0.2f;
 
+    public HealthBar healthBar;
+
     private Material myMaterial;
     private float flashTimer;
 
@@ -19,6 +21,8 @@ public class PlayerHealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         myMaterial = GetComponent<Renderer>().material;
         originalColor = myMaterial.color;
+
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void Update()
@@ -46,6 +50,8 @@ public class PlayerHealthSystem : MonoBehaviour
             Die();
         }
         flashTimer = damageFlashTime;
+
+        healthBar.SetHealth(currentHealth);
     }
 
     private void Die()
