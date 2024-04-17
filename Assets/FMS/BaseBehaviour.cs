@@ -15,6 +15,6 @@ public class BaseBehaviour : StateMachineBehaviour
     protected bool CheckPlayer(Transform mySelf)
     {
         float distance = Vector3.Distance(_player.position, mySelf.position);
-        return distance < 40;
+        return distance < 20;
     }
 }
