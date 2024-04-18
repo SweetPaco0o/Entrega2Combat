@@ -16,8 +16,10 @@ public class ChaseBehaviour : BaseBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bool isPlayerClose = CheckPlayer(animator.transform);
-        animator.SetBool("IsChasing", isPlayerClose);
+        bool isChasing = CheckPlayer(animator.transform);
+        animator.SetBool("IsChasing", isChasing);
+        bool isPlayerClose = CheckPlayer2(animator.transform);
+        animator.SetBool("IsPlayerClose", isPlayerClose);
 
         Move(animator.transform);
     }
