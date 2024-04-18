@@ -1,20 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackBehaviour : BaseBehaviour
 {
-    private float attackRange = 1.0f;
-    private float attackCooldown = 1.0f;
-    private float Damage = 10f;
+    public float attackRange = 1.0f;
+    public float attackCooldown = 1.0f;
+    public int Damage = 10;
 
-    private float lastAttackTime = 0.0f;
+    public float lastAttackTime = 0.0f;
+
+    public string playerTag = "Player";
+    private GameObject playerObject;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        playerObject = GameObject.FindGameObjectWithTag(playerTag);
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,17 +31,26 @@ public class AttackBehaviour : BaseBehaviour
 
         if (isPlayerClose & isReachable)
         {
+            playerObject = GameObject.FindGameObjectWithTag(playerTag);
+            AttackPlayer();
+            
             if(Time.time - lastAttackTime >= attackCooldown)
             {
                 AttackPlayer();
                 lastAttackTime = Time.time;
-            }
-            
-
+            }        
         }
     }
     private void AttackPlayer()
     {
-        Debug.Log("Attack!");
+        if(playerObject != null) 
+        {
+            Debug.Log("Attacks");
+            playerObject.GetComponent<PlayerHealthSystem>().PlayerTakesDamage(Damage);
+        }
+        else
+        {
+            Debug.Log("Player doesn't exist");
+        }
     }
 }

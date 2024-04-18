@@ -6,7 +6,12 @@ using UnityEngine;
 public class PostattackBehaviour : BaseBehaviour
 {
     float cooldownTime = 1.0f;
-    float startTime = Time.time;
+    private float startTime;
+
+    private void OnEnable()
+    {
+        startTime = Time.time;
+    }
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
