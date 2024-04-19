@@ -15,6 +15,8 @@ public class AttackBehaviour : BaseBehaviour
     public string playerTag = "Player";
     private GameObject playerObject;
 
+    public int AttackNumber = 0;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -31,22 +33,22 @@ public class AttackBehaviour : BaseBehaviour
 
         if (isPlayerClose & isReachable)
         {
-            playerObject = GameObject.FindGameObjectWithTag(playerTag);
-            AttackPlayer();
-            
-            if(Time.time - lastAttackTime >= attackCooldown)
+            playerObject = GameObject.FindGameObjectWithTag(playerTag); // Find player object (consider alternatives)
+            if (Time.time - lastAttackTime >= attackCooldown) // Check cooldown
             {
                 AttackPlayer();
-                lastAttackTime = Time.time;
-            }        
+                lastAttackTime = Time.time; // Update last attack time
+            }
         }
     }
     private void AttackPlayer()
     {
         if(playerObject != null) 
         {
-            Debug.Log("Attacks");
+            Debug.Log("Attacks" + AttackNumber);
             playerObject.GetComponent<PlayerHealthSystem>().PlayerTakesDamage(Damage);
+            
+            AttackNumber++;
         }
         else
         {
