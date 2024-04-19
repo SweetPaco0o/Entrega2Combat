@@ -42,7 +42,7 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
-    private void PlayerTakesDamage(int damage)
+    public void PlayerTakesDamage(int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
