@@ -46,15 +46,15 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void PlayerTakesDamage(int damage)
     {
-        if ((!isInvincible))
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            currentHealth -= damage;
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-            flashTimer = damageFlashTime;
-            StartCoroutine(InvulnerabilityTimer());            
+            Die();
+        }
+        flashTimer = damageFlashTime;
+        if (!isInvincible) // Check invulnerability after damage
+        {
+            StartCoroutine(InvulnerabilityTimer());
         }
         healthBar.SetHealth(currentHealth);
     }
