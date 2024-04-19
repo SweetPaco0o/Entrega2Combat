@@ -46,7 +46,11 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void PlayerTakesDamage(int damage)
     {
-        currentHealth -= damage;
+        if (!isInvincible)
+        {
+            currentHealth -= damage;
+        }
+        
         if (currentHealth <= 0)
         {
             Die();
