@@ -1349,7 +1349,6 @@ MonoBehaviour:
   deathImage: {fileID: 468553897}
   healthBar: {fileID: 1281295398}
   isInvincible: 0
-  Respawn: {fileID: 297015271}
 --- !u!1 &726145378
 GameObject:
   m_ObjectHideFlags: 0
