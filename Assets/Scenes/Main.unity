@@ -1241,6 +1241,7 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 0}
   damageFlashTime: 0.2
   healthBar: {fileID: 1281295398}
+  isInvincible: 0
 --- !u!1 &726145378
 GameObject:
   m_ObjectHideFlags: 0

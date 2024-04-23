@@ -16,6 +16,8 @@ public class PlayerHealthSystem : MonoBehaviour
     private Material myMaterial;
     private float flashTimer;
 
+    public bool isInvincible = false;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -44,14 +46,29 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void PlayerTakesDamage(int damage)
     {
-        currentHealth -= damage;
+        if (!isInvincible)
+        {
+            currentHealth -= damage;
+        }
+        
         if (currentHealth <= 0)
         {
             Die();
         }
         flashTimer = damageFlashTime;
-
+        if (!isInvincible) // Check invulnerability after damage
+        {
+            StartCoroutine(InvulnerabilityTimer());
+        }
         healthBar.SetHealth(currentHealth);
+    }
+
+    IEnumerator InvulnerabilityTimer()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(5.0f);
+        isInvincible = false;
+        Debug.Log("isInvincible");
     }
 
     private void Die()
