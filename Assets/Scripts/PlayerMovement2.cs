@@ -36,6 +36,10 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         bool isRunning = inputController.Run;
+        if(isRunning)
+        {
+            Debug.Log("Me corrooooooo");
+        }
         float SpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * inputController.InputMove.y : 0;
         float SpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * inputController.InputMove.x : 0;
         float movementDirectionY = moveDirection.y;
