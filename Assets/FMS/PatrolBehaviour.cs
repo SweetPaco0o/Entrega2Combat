@@ -40,7 +40,7 @@ public class PatrolBehaviour : BaseBehaviour
         else if (!isPlayerClose && Random.value < ChanceToWaypoint)
         {
             IsWaypointing = true;
-            animator.SetBool("isWaypointing", IsWaypointing);
+            animator.SetBool("IsWaypointing", IsWaypointing);
         }
 
         // Do stuff
