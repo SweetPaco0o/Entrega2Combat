@@ -37,8 +37,8 @@ public class BloodSpawner : MonoBehaviour
             for (int j = 0; j < nCubes; j++)
             {
                 Vector3 pos = transform.position;
-                pos.x = Random.Range(-20, 20);
-                pos.z = Random.Range(-20, 20);
+                pos.x = Random.Range(-1, 1);
+                pos.z = Random.Range(-1, 1);
 
                 Quaternion rot = Random.rotation;
                 rot = Quaternion.Euler(0, Random.Range(0, 360), 0);
@@ -47,28 +47,6 @@ public class BloodSpawner : MonoBehaviour
             }
 
         }
-    }
-
-    void SpawnMany()
-    {
-        for (int i = 0; i < nCubes; i++)
-        {
-            for (int j = 0; j < nCubes; j++)
-            {
-                Vector3 pos = transform.position;
-                pos.x += i;
-                pos.y += j;
-
-                if (Random.value < fillProbability)
-                    SpawnOne(pos);
-            }
-
-        }
-    }
-
-    void SpawnOne()
-    {
-        Instantiate(Prefab, transform.position, transform.rotation);
     }
 
     void SpawnOne(Vector3 pos)
