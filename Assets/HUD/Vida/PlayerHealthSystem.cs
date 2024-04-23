@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerHealthSystem : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public Color originalColor;
     public Color damageColor;
     public float damageFlashTime = 0.2f;
+    public Image deathImage;
 
     public HealthBar healthBar;
 
@@ -18,6 +20,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public bool isInvincible = false;
 
+    public Transform Respawn;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -25,6 +29,7 @@ public class PlayerHealthSystem : MonoBehaviour
         originalColor = myMaterial.color;
 
         healthBar.SetMaxHealth(maxHealth);
+        deathImage.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -56,7 +61,7 @@ public class PlayerHealthSystem : MonoBehaviour
             Die();
         }
         flashTimer = damageFlashTime;
-        if (!isInvincible) // Check invulnerability after damage
+        if (!isInvincible)
         {
             StartCoroutine(InvulnerabilityTimer());
         }
@@ -66,13 +71,23 @@ public class PlayerHealthSystem : MonoBehaviour
     IEnumerator InvulnerabilityTimer()
     {
         isInvincible = true;
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(1.0f);
         isInvincible = false;
         Debug.Log("isInvincible");
     }
 
     private void Die()
     {
-        Destroy(gameObject);
+        transform.position = Respawn.position;
+        Debug.Log(Respawn.position);
+        deathImage.gameObject.SetActive(true);
+        StartCoroutine(HideDeathImage());
+        currentHealth = maxHealth;
+    }
+
+    IEnumerator HideDeathImage()
+    {
+        yield return new WaitForSeconds(2.0f);
+        deathImage.gameObject.SetActive(false); 
     }
 }
