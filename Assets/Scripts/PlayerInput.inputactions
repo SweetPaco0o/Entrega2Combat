@@ -329,10 +329,10 @@
                 {
                     "name": "",
                     "id": "c4800e1f-066f-4497-afed-2c24355a86c8",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "",
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -343,7 +343,7 @@
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
