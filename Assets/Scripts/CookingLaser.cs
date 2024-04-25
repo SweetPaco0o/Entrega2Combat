@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XInput;
 
-public class GunV2 : MonoBehaviour
+public class CookingLaser : MonoBehaviour
 {
     public float damage = 10f;
     public float range = 100f;

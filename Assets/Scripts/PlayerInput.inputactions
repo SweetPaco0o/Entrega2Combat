@@ -329,7 +329,7 @@
                 {
                     "name": "",
                     "id": "c4800e1f-066f-4497-afed-2c24355a86c8",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -380,6 +380,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }
