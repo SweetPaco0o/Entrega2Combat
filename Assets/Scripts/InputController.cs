@@ -19,12 +19,20 @@ public class InputController : MonoBehaviour
 
     private bool _zoom;
     public bool Zoom { get { return _zoom; } }
-    
+
+    private bool _arma1;
+    public bool Arma1 { get { return _arma1; } }
+
+    private bool _arma2;
+    public bool Arma2 { get { return _arma2; } }
+
     private void LateUpdate()
     {
         _jumped = false;
         _zoom = false;
         _shoot = false;
+        _arma1 = false;
+        _arma2 = false;
     }
 
     private void OnMove(InputValue input)
@@ -38,8 +46,15 @@ public class InputController : MonoBehaviour
     }
     private void OnShoot()
     {
-        Debug.Log("Dispara");
         _shoot = true;
+    }
+    private void OnArma1()
+    {
+        _arma1 = true;
+    }
+    private void OnArma2()
+    {
+        _arma2 = true;
     }
     private void OnRunStart()
     {
