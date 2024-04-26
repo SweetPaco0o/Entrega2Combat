@@ -2039,8 +2039,9 @@ MonoBehaviour:
   fireRate: 50
   impactForce: 30
   fpsCam: {fileID: 330585545}
-  particulas: {fileID: 1460852488}
-  impactEffect: {fileID: 1460852485}
+  BulletPrefab: {fileID: 957000066}
+  FirePoint: {fileID: 107933546}
+  FireSpeed: 200
 --- !u!114 &1147555156
 MonoBehaviour:
   m_ObjectHideFlags: 0

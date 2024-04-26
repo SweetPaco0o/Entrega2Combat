@@ -12,10 +12,14 @@ public class GunV2 : MonoBehaviour
     public float impactForce = 30f;
 
     public Camera fpsCam;
-    public ParticleSystem particulas;
-    public GameObject impactEffect;
+    //public ParticleSystem particulas;
+    //public GameObject impactEffect;
 
     private float timeToFire = 0f;
+
+    public Bullet BulletPrefab;
+    public Transform FirePoint;
+    public float FireSpeed = 200f;
 
     private InputController inputController;
 
@@ -35,7 +39,10 @@ public class GunV2 : MonoBehaviour
 
     private void Shoot()
     {
-        particulas.Play();
+        Bullet bullet = Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
+        bullet.Init(FireSpeed);
+
+        //particulas.Play();
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
@@ -53,8 +60,8 @@ public class GunV2 : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
 
-            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(impact, 2f);
+            //GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            //Destroy(impact, 2f);
         }
     }
 }
