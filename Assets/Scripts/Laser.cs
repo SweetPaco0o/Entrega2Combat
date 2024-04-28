@@ -7,7 +7,7 @@ public class Laser : MonoBehaviour
 {
     public Transform FirePoint;
 
-    public float BeamLength = 20f;
+    public float BeamLength = 200f;
 
     public LayerMask WhatIsShootable;
 
@@ -29,7 +29,7 @@ public class Laser : MonoBehaviour
             Shoot();
         }
 
-        if (inputController.Shoot && isShooting)
+        if (!inputController.Shoot && isShooting)
         {
             isShooting = false;
             lineRenderer.enabled = false;
