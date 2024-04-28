@@ -13,6 +13,9 @@ public class Target : MonoBehaviour
 
     private Material myMaterial; // Using myMaterial for clarity
 
+    // Reference to the BloodSpawner script (assuming it's on the same GameObject)
+    private BloodSpawner bloodSpawner;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -30,6 +33,15 @@ public class Target : MonoBehaviour
         {
             originalColor = myMaterial.color;
         }
+
+        // Try to get the BloodSpawner component on the same GameObject
+        bloodSpawner = GetComponent<BloodSpawner>();
+
+        // Handle the case where BloodSpawner is not found (optional)
+        if (bloodSpawner == null)
+        {
+            Debug.LogError("Target: BloodSpawner component not found!");
+        }
     }
 
     private void Update()
@@ -45,6 +57,7 @@ public class Target : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("Infligiendo daño al enemigo.");
+
         if (currentHealth <= 0)
         {
             Debug.Log("matando.");
@@ -56,6 +69,12 @@ public class Target : MonoBehaviour
             if (myMaterial != null)
             {
                 StartCoroutine(DamageFlash());
+            }
+
+            // Call SpawnInPlane function on BloodSpawner (if it exists)
+            if (bloodSpawner != null)
+            {
+                bloodSpawner.SpawnBloodParticles(); // Corrected function name
             }
         }
     }

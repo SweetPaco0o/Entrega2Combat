@@ -6,15 +6,15 @@ public class BloodSpawner : MonoBehaviour
 {
     public GameObject Prefab;
 
-    public int nCubes = 10;
+    public int numParticles = 10; // Changed nCubes to numParticles for clarity
+
+    public float spawnRadius = 0.5f; // Radius for spawning around the enemy
 
     public float fillProbability = 0.9f;
 
-    public Gradient CubeGradient;
+    public Gradient ParticleGradient; // Assuming blood particles use a Gradient
 
     public float ColorSpeed = 1f;
-
-    public Transform Parent;
 
     void Start()
     {
@@ -26,48 +26,34 @@ public class BloodSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnInPlane();
+            SpawnBloodParticles(); // Call the modified function
         }
     }
 
-    void SpawnInPlane()
+    public void SpawnBloodParticles() // Renamed for clarity
     {
-        for (int i = 0; i < nCubes; i++)
+        for (int i = 0; i < numParticles; i++)
         {
-            for (int j = 0; j < nCubes; j++)
+            if (Random.value < fillProbability) // Spawn based on probability
             {
-                Vector3 pos = transform.position;
-                pos.x = Random.Range(-1, 1);
-                pos.z = Random.Range(-1, 1);
+                // Random position around the enemy
+                Vector3 spawnPoint = transform.position + Random.insideUnitSphere * spawnRadius;
+                spawnPoint.y = transform.position.y; // Keep Y position consistent
 
-                Quaternion rot = Random.rotation;
-                rot = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                // Random rotation
+                Quaternion randomRot = Random.rotation;
 
-                SpawnWithRot(pos, rot);
+                SpawnParticle(spawnPoint, randomRot);
             }
-
         }
     }
 
-    void SpawnOne(Vector3 pos)
+    void SpawnParticle(Vector3 pos, Quaternion rot)
     {
-        Instantiate(Prefab, pos, transform.rotation);
-    }
+        GameObject particle = Instantiate(Prefab, pos, rot);
+        particle.transform.localScale *= Random.Range(0.1f, 1f);
 
-    void SpawnWithRot(Vector3 pos, Quaternion rot)
-    {
-        GameObject go = Instantiate(Prefab, pos, rot);
-        go.transform.localScale *= Random.Range(0.1f, 1f);
-
-
-        Color color = new Color(Random.value, Random.value, Random.value);
-
-        //float rdm = Random.value;
-        float rdm = Mathf.Sin(Time.time * ColorSpeed) / 2 + 0.5f;
-        //color = new Color(rdm, rdm, rdm);
-        color = CubeGradient.Evaluate(rdm);
-        go.GetComponent<MeshRenderer>().material.color = color;
-
-        go.transform.SetParent(Parent);
+        Color color = ParticleGradient.Evaluate(Mathf.Sin(Time.time * ColorSpeed) / 2 + 0.5f);
+        particle.GetComponent<MeshRenderer>().material.color = color;
     }
 }
