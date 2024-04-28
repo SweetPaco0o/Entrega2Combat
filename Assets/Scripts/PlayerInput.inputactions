@@ -388,7 +388,7 @@
                     "name": "",
                     "id": "b55c5359-48d3-4847-9572-f56535456f10",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Aim",

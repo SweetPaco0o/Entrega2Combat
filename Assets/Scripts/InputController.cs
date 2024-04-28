@@ -17,6 +17,9 @@ public class InputController : MonoBehaviour
     private bool _shoot;
     public bool Shoot { get { return _shoot; } }
 
+    private bool _aim;
+    public bool Aim { get { return _aim; } }
+
     private bool _zoom;
     public bool Zoom { get { return _zoom; } }
 
@@ -34,6 +37,7 @@ public class InputController : MonoBehaviour
         _jumped = false;
         _zoom = false;
         _shoot = false;
+        _aim = false;
         _arma1 = false;
         _arma2 = false;
         _arma3 = false;
@@ -51,6 +55,10 @@ public class InputController : MonoBehaviour
     private void OnShoot()
     {
         _shoot = true;
+    }
+    private void OnAim()
+    {
+        _aim = true;
     }
     private void OnArma1()
     {
