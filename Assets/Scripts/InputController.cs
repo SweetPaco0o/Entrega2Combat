@@ -26,6 +26,9 @@ public class InputController : MonoBehaviour
     private bool _arma2;
     public bool Arma2 { get { return _arma2; } }
 
+    private bool _arma3;
+    public bool Arma3 { get { return _arma3; } }
+
     private void LateUpdate()
     {
         _jumped = false;
@@ -33,6 +36,7 @@ public class InputController : MonoBehaviour
         _shoot = false;
         _arma1 = false;
         _arma2 = false;
+        _arma3 = false;
     }
 
     private void OnMove(InputValue input)
@@ -55,6 +59,10 @@ public class InputController : MonoBehaviour
     private void OnArma2()
     {
         _arma2 = true;
+    }
+    private void OnArma3()
+    {
+        _arma3 = true;
     }
     private void OnRunStart()
     {
