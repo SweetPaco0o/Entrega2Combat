@@ -52,6 +52,11 @@ public class WeaponSwitch : MonoBehaviour
             selectedWeapon = 1;
         }
 
+        if (inputController.Arma3 && transform.childCount >= 3)
+        {
+            selectedWeapon = 2;
+        }
+
         if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();
