@@ -13,12 +13,16 @@ public class Target : MonoBehaviour
 
     private Material myMaterial; // Using myMaterial for clarity
 
+    private GameObject parent;
+
     // Reference to the BloodSpawner script (assuming it's on the same GameObject)
     private BloodSpawner bloodSpawner;
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        parent = transform.parent.gameObject;
 
         // Try to get the Mesh Renderer on this GameObject
         myMaterial = GetComponent<MeshRenderer>()?.material;
@@ -90,7 +94,7 @@ public class Target : MonoBehaviour
     {
         Debug.Log("Enemy died.");
         // Destruir recursivamente el GameObject y todos sus hijos
-        DestroyRecursive(gameObject);
+        DestroyRecursive(parent);
     }
 
     private void DestroyRecursive(GameObject obj)
