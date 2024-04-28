@@ -5,10 +5,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Rigidbody _rigidbody;
-    // Start is called before the first frame update
+
     private void Start()
     {
-        //Destroy(gameObject, 5);
+        //Destroy(gameObject, 5f);
     }
     public void Init(float speed)
     {
@@ -18,6 +18,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        EnemyHealthSystem enemyHealth = collision.gameObject.GetComponent<EnemyHealthSystem>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(100);
+        }
+
         Destroy(gameObject);
     }
     private void OnBecameInvisible()
