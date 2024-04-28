@@ -38,22 +38,27 @@ public class BloodSpawner : MonoBehaviour
             {
                 // Random position around the enemy
                 Vector3 spawnPoint = transform.position + Random.insideUnitSphere * spawnRadius;
-                spawnPoint.y = transform.position.y; // Keep Y position consistent
+                spawnPoint.y = transform.position.y + 0.5f; // Keep Y position consistent
 
                 // Random rotation
                 Quaternion randomRot = Random.rotation;
 
-                SpawnParticle(spawnPoint, randomRot);
+                // Spawn particle with delayed destroy
+                StartCoroutine(SpawnAndDestroyParticle(spawnPoint, randomRot));
             }
         }
     }
 
-    void SpawnParticle(Vector3 pos, Quaternion rot)
+    IEnumerator SpawnAndDestroyParticle(Vector3 pos, Quaternion rot)
     {
         GameObject particle = Instantiate(Prefab, pos, rot);
         particle.transform.localScale *= Random.Range(0.1f, 1f);
 
         Color color = ParticleGradient.Evaluate(Mathf.Sin(Time.time * ColorSpeed) / 2 + 0.5f);
         particle.GetComponent<MeshRenderer>().material.color = color;
+
+        // Wait for 2 seconds and then destroy the particle
+        yield return new WaitForSeconds(2.0f);
+        Destroy(particle);
     }
 }
