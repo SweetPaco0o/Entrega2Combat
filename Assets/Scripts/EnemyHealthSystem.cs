@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100f;
+    public float currentHealth;
     public Color originalColor;
     public Color damageColor;
     public float damageFlashTime = 0.2f;
@@ -44,7 +44,7 @@ public class EnemyHealthSystem : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         Debug.Log("Infligiendo daño al enemigo.");
