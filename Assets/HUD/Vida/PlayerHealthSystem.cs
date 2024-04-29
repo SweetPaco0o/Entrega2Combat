@@ -22,6 +22,12 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public Transform Respawn;
 
+    public LayerMask WhatIsHealing;
+    public Transform GroundChecker;
+    public float groundSphereRadius = 0.5f;
+
+    public Hurt_Layout hurt_Layout;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -47,6 +53,17 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             myMaterial.color = originalColor;
         }
+        if (IsHealing())
+        {
+            Debug.Log("Player Healed");
+            currentHealth = maxHealth;
+        }
+    }
+
+    private bool IsHealing()
+    {
+        return Physics.CheckSphere(
+            GroundChecker.position, groundSphereRadius, WhatIsHealing);
     }
 
     public void PlayerTakesDamage(int damage)
@@ -54,6 +71,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (!isInvincible)
         {
             currentHealth -= damage;
+            hurt_Layout.ShowAndHideHurtUI();
         }
         
         if (currentHealth <= 0)

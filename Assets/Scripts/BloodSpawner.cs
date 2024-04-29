@@ -24,10 +24,7 @@ public class BloodSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnBloodParticles(); // Call the modified function
-        }
+
     }
 
     public void SpawnBloodParticles() // Renamed for clarity
