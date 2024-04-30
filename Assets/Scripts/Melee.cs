@@ -34,7 +34,9 @@ public class Melee : MonoBehaviour
 
     private void MeleeAttack()
     {
-        if(!readytoAttack || attacking)
+        GetComponent<AudioSource>().Play();
+
+        if (!readytoAttack || attacking)
         {
             return;
         }
@@ -55,6 +57,7 @@ public class Melee : MonoBehaviour
             animator.SetBool("Attack2", true);
             attackCount = 0;
         }
+        
     }
 
     void ResetAttack()

@@ -47,8 +47,11 @@ public class Laser : MonoBehaviour
         if (Physics.Raycast(ray, out hit, BeamLength, WhatIsShootable))
         {
             endPos = hit.point;
-            Debug.Log("Shoot at " + hit.transform.name);
-            Destroy(hit.transform.gameObject);
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.TakeDamage(40);
+            }
         }
         else
         {
