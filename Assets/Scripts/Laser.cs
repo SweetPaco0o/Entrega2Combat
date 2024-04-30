@@ -59,5 +59,7 @@ public class Laser : MonoBehaviour
         lineRenderer.SetPosition(0, FirePoint.position);
         lineRenderer.SetPosition(1, endPos);
         lineRenderer.enabled = true;
+
+        GetComponent<AudioSource>().Play();
     }
 }

@@ -121,6 +121,7 @@ public class GunV2 : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
         }
+        GetComponent<AudioSource>().Play();
     }
 
     IEnumerator Reload()
@@ -136,4 +137,6 @@ public class GunV2 : MonoBehaviour
         currentAmmo = maxAmmo;
         isReloading = false;
     }
+
+
 }
