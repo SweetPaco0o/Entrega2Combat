@@ -29,7 +29,6 @@ public class Melee : MonoBehaviour
         if(inputController.Shoot)
         {
             MeleeAttack();
-            Debug.Log("Barcelona machetazo");
         }
     }
 
@@ -48,18 +47,20 @@ public class Melee : MonoBehaviour
 
         if (attackCount == 0)
         {
-            animator.SetTrigger("Attack1");
+            animator.SetBool("Attack1", true);
             attackCount++;
         }
         else
         {
-            animator.SetTrigger("Attack2");
+            animator.SetBool("Attack2", true);
             attackCount = 0;
         }
     }
 
     void ResetAttack()
     {
+        animator.SetBool("Attack1", false);
+        animator.SetBool("Attack2", false);
         readytoAttack = true;
         attacking = false;
     }
