@@ -69,7 +69,6 @@ public class Target : MonoBehaviour
         }
         else
         {
-            GetComponent<AudioSource>().Play();
             // Flash damage color if material exists
             if (myMaterial != null)
             {
