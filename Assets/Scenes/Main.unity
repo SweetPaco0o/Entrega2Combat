@@ -8772,8 +8772,8 @@ MonoBehaviour:
   fillProbability: 0.9
   ParticleGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0.3490566, g: 0, b: 0, a: 1}
+    key0: {r: 0.4339623, g: 0, b: 0, a: 1}
+    key1: {r: 0.16981131, g: 0, b: 0, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -8801,6 +8801,11 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   ColorSpeed: 1
+  initialForceMultiplier: 1
+  minForceMultiplier: 0.5
+  maxForceMultiplier: 1.5
+  minSpeed: 2
+  maxSpeed: 5
 --- !u!1 &1844238169
 GameObject:
   m_ObjectHideFlags: 0
