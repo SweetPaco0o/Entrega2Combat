@@ -60,7 +60,7 @@ public class Target : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Infligiendo daño al enemigo.");
+        Debug.Log("Infligiendo daï¿½o al enemigo.");
 
         if (currentHealth <= 0)
         {
