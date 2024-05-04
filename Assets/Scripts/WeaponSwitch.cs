@@ -1,22 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
-using TMPro;
 
 public class WeaponSwitch : MonoBehaviour
 {
     public int selectedWeapon = 0;
 
     private InputController inputController;
-
-    public TextMeshProUGUI BulletCount;
-    public Image Bullet;
-    public Image ReloadDefault;
-    public Image ReloadFill;
-
-    public Animator animator;
 
     void Start()
     {
@@ -69,20 +60,6 @@ public class WeaponSwitch : MonoBehaviour
         if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();
-        }
-
-        if (selectedWeapon == 0)
-        {
-            BulletCount.gameObject.SetActive(true);
-            Bullet.gameObject.SetActive(true);
-        }
-        else
-        {
-            BulletCount.gameObject.SetActive(false);
-            Bullet.gameObject.SetActive(false);
-            ReloadDefault.gameObject.SetActive(false);
-            ReloadFill.gameObject.SetActive(false);
-            animator.SetBool("isReloading", false);
         }
     }
 

@@ -20,9 +20,6 @@ public class InputController : MonoBehaviour
     private bool _aim;
     public bool Aim { get { return _aim; } }
 
-    private bool _reload;
-    public bool Reload { get { return _reload; } }
-
     private bool _zoom;
     public bool Zoom { get { return _zoom; } }
 
@@ -44,7 +41,6 @@ public class InputController : MonoBehaviour
         _arma1 = false;
         _arma2 = false;
         _arma3 = false;
-        _reload = false;
     }
 
     private void OnMove(InputValue input)
@@ -63,10 +59,6 @@ public class InputController : MonoBehaviour
     private void OnAim()
     {
         _aim = true;
-    }
-    private void OnReload()
-    {
-        _reload = true;
     }
     private void OnArma1()
     {

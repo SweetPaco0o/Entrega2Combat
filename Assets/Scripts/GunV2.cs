@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.XInput;
-using UnityEngine.UI;
 
 public class GunV2 : MonoBehaviour
 {
@@ -34,13 +32,7 @@ public class GunV2 : MonoBehaviour
     public int maxAmmo = 10;
     private int currentAmmo;
     public float reloadTime = 2f;
-    public bool isReloading = false;
-    public TextMeshProUGUI BulletCount;
-    public Image Bullet;
-    public Image ReloadDefault;
-    public Image ReloadFill;
-    float currentFillAmount = 0f; 
-    float targetFillAmount = 1f; 
+    private bool isReloading = false;
 
     private InputController inputController;
 
@@ -53,10 +45,6 @@ public class GunV2 : MonoBehaviour
         weaponPosition = transform;
 
         currentAmmo = maxAmmo;
-
-        ReloadFill.fillAmount = currentFillAmount;
-        ReloadDefault.gameObject.SetActive(false);
-        ReloadFill.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -67,14 +55,12 @@ public class GunV2 : MonoBehaviour
 
     void Update()
     {
-        BulletCount.text = currentAmmo.ToString();
-
         if (isReloading)
         {
             return;
         }
 
-        if (currentAmmo <= 0 || inputController.Reload)
+        if (currentAmmo <= 0)
         {
             StartCoroutine(Reload());
             return;
@@ -138,31 +124,18 @@ public class GunV2 : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
-    public IEnumerator Reload()
+    IEnumerator Reload()
     {
         isReloading = true;
         animator.SetBool("isReloading", true);
 
-        float timer = 0f;
-        currentFillAmount = 0f;
+        yield return new WaitForSeconds(reloadTime -.25f);
 
-        ReloadDefault.gameObject.SetActive(true);
-        ReloadFill.gameObject.SetActive(true);
-
-        while (timer < reloadTime)
-        {
-            timer += Time.deltaTime;
-            currentFillAmount = timer / reloadTime;
-            ReloadFill.fillAmount = currentFillAmount;
-            yield return null;
-        }
-
-        ReloadDefault.gameObject.SetActive(false);
-        ReloadFill.gameObject.SetActive(false);
+        animator.SetBool("isReloading", false);
+        yield return new WaitForSeconds(.25f);
 
         currentAmmo = maxAmmo;
         isReloading = false;
-        animator.SetBool("isReloading", false);
     }
 
 
