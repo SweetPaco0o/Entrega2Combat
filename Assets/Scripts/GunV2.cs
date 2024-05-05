@@ -113,6 +113,8 @@ public class GunV2 : MonoBehaviour
         Bullet bullet = Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
         bullet.Init(FireSpeed);
 
+        StartCoroutine(DestroyBulletAfterDelay(bullet.gameObject, 2f));
+
         //particulas.Play();
         //GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         //Destroy(impact, 2f);
@@ -136,6 +138,12 @@ public class GunV2 : MonoBehaviour
             }
         }
         GetComponent<AudioSource>().Play();
+    }
+
+    IEnumerator DestroyBulletAfterDelay(GameObject bulletObject, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(bulletObject);
     }
 
     public IEnumerator Reload()
