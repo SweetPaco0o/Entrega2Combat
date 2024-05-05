@@ -2,37 +2,45 @@ using UnityEngine;
 
 public class NPCIKController : MonoBehaviour
 {
-    public Transform player; // Referencia al transform del jugador
-    private Animator animator; // Referencia al Animator del NPC
+    public Transform Player;
+    public Animator animator;
 
-    void Start()
+    public float maxDistance = 10f;
+    public Vector3 minRotation;
+    public Vector3 maxRotation;
+
+    private void Awake()
     {
-        animator = GetComponent<Animator>(); // Obtener el componente Animator del NPC
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void OnAnimatorIK()
     {
-        if (player != null)
+        float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
+
+        if (distanceToPlayer <= maxDistance)
         {
-            // Activa el parámetro "LookAtPlayer" para activar el IK del brazo
-            animator.SetBool("LookAtPlayer", true);
+            animator.SetBool("Saludo", true);
+            
+            Vector3 directionToPlayer = (Player.position - transform.position).normalized;
 
-            // Calcula la dirección hacia el jugador
-            Vector3 directionToPlayer = player.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
 
-            // Calcula la rotación para señalar al jugador
-            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+            targetRotation.eulerAngles = new Vector3(
+                Mathf.Clamp(targetRotation.eulerAngles.x, minRotation.x, maxRotation.x),
+                Mathf.Clamp(targetRotation.eulerAngles.y, minRotation.y, maxRotation.y),
+                Mathf.Clamp(targetRotation.eulerAngles.z, minRotation.z, maxRotation.z)
+            );
 
-            // Establece la posición y rotación de la mano derecha del NPC usando IK
-            animator.SetIKPosition(AvatarIKGoal.RightHand, player.position);
-            animator.SetIKRotation(AvatarIKGoal.RightHand, lookRotation);
-            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f); // Peso completo para la posición
-            animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f); // Peso completo para la rotación
+            animator.SetLookAtPosition(Player.position);
+            animator.SetLookAtWeight(1f);
+            animator.SetBoneLocalRotation(HumanBodyBones.Head, targetRotation);
         }
         else
         {
-            // Si el jugador no está presente, desactiva el parámetro "LookAtPlayer" para desactivar el IK del brazo
-            animator.SetBool("LookAtPlayer", false);
+            animator.SetBool("Saludo", false);
+
+            animator.SetLookAtWeight(0f);
         }
     }
 }
