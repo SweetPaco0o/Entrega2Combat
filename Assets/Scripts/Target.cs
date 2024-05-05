@@ -15,12 +15,15 @@ public class Target : MonoBehaviour
 
     private GameObject parent;
 
+    public HealthBar healthBar;
+
     // Reference to the BloodSpawner script (assuming it's on the same GameObject)
     private BloodSpawner bloodSpawner;
 
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         parent = transform.parent.gameObject;
 
@@ -60,6 +63,7 @@ public class Target : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         Debug.Log("Infligiendo da�o al enemigo.");
 
         if (currentHealth <= 0)

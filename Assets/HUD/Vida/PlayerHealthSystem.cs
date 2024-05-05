@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerHealthSystem : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     public Color originalColor;
     public Color damageColor;
     public float damageFlashTime = 0.2f;
@@ -56,7 +56,8 @@ public class PlayerHealthSystem : MonoBehaviour
         if (IsHealing())
         {
             Debug.Log("Player Healed");
-            currentHealth = maxHealth;
+            currentHealth += 1;
+            healthBar.SetHealth(currentHealth);
         }
     }
 
