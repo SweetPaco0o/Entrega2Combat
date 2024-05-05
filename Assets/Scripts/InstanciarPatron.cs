@@ -2,21 +2,24 @@ using UnityEngine;
 
 public class InstanciarPatron : MonoBehaviour
 {
-    public GameObject cubePrefab;
-    public LayerMask patronLayer; 
+    public GameObject cubePrefab; 
 
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        
-        if (((1 << other.gameObject.layer) & patronLayer) != 0)
+       
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            
             ShowCube();
         }
     }
 
     void ShowCube()
     {
+        
         GameObject cubeInstance = Instantiate(cubePrefab, transform.position, Quaternion.identity);
+
+        
         Destroy(cubeInstance, 5f);
     }
 }
