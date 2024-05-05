@@ -868,6 +868,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsWaypointing: 0
+  CheckPoint: {fileID: 0}
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1101 &6735984641123644559
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
