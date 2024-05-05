@@ -2562,8 +2562,10 @@ GameObject:
   - component: {fileID: 719389614}
   - component: {fileID: 719389613}
   - component: {fileID: 719389616}
+  - component: {fileID: 719389622}
   - component: {fileID: 719389618}
   - component: {fileID: 719389620}
+  - component: {fileID: 719389621}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2774,6 +2776,32 @@ MonoBehaviour:
   GroundChecker: {fileID: 1210353146}
   groundSphereRadius: 0.5
   hurt_Layout: {fileID: 384073834}
+--- !u!114 &719389621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719389607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd0d5092a9818a4997ff4b1be180fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &719389622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719389607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123515598b5061344961c52bd661b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 7200967666211089769, guid: 6cbe885953d24d04bb561060062e7b97,
+    type: 3}
 --- !u!1 &726145378
 GameObject:
   m_ObjectHideFlags: 0
